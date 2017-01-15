@@ -9,7 +9,7 @@ h1, h2, h3, h4 {
 }
 
 header {
-	background-color: /*rgba(53,60,79,.8)*/ rgba(0, 150, 136, 1);
+	background-color: rgba(0, 150, 136, 1);
 	color: #FFF;
 	height: 50%;
 	
