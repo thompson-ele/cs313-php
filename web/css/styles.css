@@ -9,7 +9,7 @@ h1, h2, h3, h4 {
 }
 
 header {
-	background-color: rgba(53,60,79,.8);
+	background-color: /*rgba(53,60,79,.8)*/ rgba(0, 150, 136, 1);
 	color: #FFF;
 	height: 50%;
 	
@@ -27,14 +27,39 @@ header h3 {
 
 main {
 	background-color: #FFF;
-	padding: 200px 0;
+	padding: 250px 0 200px 0;
+}
+
+main h2 {
+	font-size: 2.75em;
+}
+
+main p {
+	font-size: 1.25em;
+	padding-top: 25px;
 }
 
 #ele-profile img {
 	border: 10px solid #DDD;
 	margin-bottom: -200px;
+	
+	transition: transform .25s ease-in-out;
+	-moz-transition: transform .25s ease-in-out;
+	-webkit-transition: transform .25s ease-in-out;
 }
 
+#ele-profile img:hover {
+        -webkit-transform: rotateZ(30deg);
+        -ms-transform: rotateZ(30deg);
+	    transform: rotateZ(30deg);
+}
+
+footer {
+	height: 50px;
+	background-color: rgba(53,60,79,.8);
+}
+
+/* --- SOCIAL MEDIA ICONS --*/
 .social-icons {
 	font-size: 2em;
 	text-align: center;
@@ -81,6 +106,11 @@ main {
 .social-icons li a.github:hover {
 	background-color: #000;
 	border-color: #000;
+}
+
+.social-icons li a.linkedin:hover {
+	background-color: #0077B5;
+	border-color: #0077B5;
 }
 
 .social-icons li a:active {
