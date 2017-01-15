@@ -20,6 +20,13 @@ header h1 {
 	font-size: 6em;
 }
 
+header h1 a:link,
+header h1 a:visited,
+header h1 a:hover,
+header h1 a:active {
+	color: #FFF;
+}
+
 header h3 {
 	font-size: 2.5em;
 	margin-bottom: 50px;
@@ -27,7 +34,7 @@ header h3 {
 
 main {
 	background-color: #FFF;
-	padding: 250px 0 200px 0;
+	padding: 50px 0 200px;
 }
 
 main h2 {
@@ -37,6 +44,10 @@ main h2 {
 main p {
 	font-size: 1.25em;
 	padding-top: 25px;
+}
+
+main#index {
+	padding: 250px 0 200px 0;
 }
 
 #ele-profile img {
