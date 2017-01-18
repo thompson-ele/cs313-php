@@ -1,0 +1,6 @@
+[
+	{"rufus":"1","seymour":"2","milo":"3","haru":"4"},
+	{"rufus":"2","seymour":"1","milo":"3","haru":"3"},
+	{"rufus":"2","seymour":"3","milo":"3","haru":"3"},
+	{"rufus":"3","seymour":"4","milo":"3","haru":"2"}
+]
