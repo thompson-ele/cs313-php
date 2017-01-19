@@ -84,7 +84,7 @@
 				<label for="Continents">Continents: </label>
 				<br>
    				<?php foreach ($continents as $continent): ?>
-					<input type="checkbox" name="Continents" id="<?php echo $continent["val"]; ?>" value="<?php echo $continent["val"]; ?>">
+					<input type="checkbox" name="Continents[]" id="<?php echo $continent["val"]; ?>" value="<?php echo $continent["val"]; ?>">
 					<label for="<?php echo $continent["val"]; ?>"><?php echo $continent["name"] ?></label>	
 					<br>
 				<?php endforeach ?>
