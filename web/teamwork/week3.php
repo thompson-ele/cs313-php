@@ -59,34 +59,22 @@
           	$nameErr = "Name is Required"; 
             $showForm = true;
         } 
-        //else { $name = sanitize($_POST["Name"]); }
             
-        if (empty($_POST["Email"])) { $emailErr = "Email is Required"; }
-        else if (!filter_var($_POST["Email"], FILTER_VALIDATE_EMAIL) === false) {
+        if (empty($_POST["Email"])) { $emailErr = "Email is Required"; $showForm = true; }
+        else if (!filter_var($_POST["Email"], FILTER_VALIDATE_EMAIL)) {
           $emailErr = "Invalid Email Format"; 
           $showForm = true;
-        //} else { 
-        // check if e-mail address is well-formed
-          //if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            //$emailErr = "Invalid email format"; 
-          //}
         }
       
         if (empty($_POST["Major"])) { 
           $majorErr = "Major is Required";
           $showForm = true; } 
-        //else {  }
       
-        if (empty($_POST["Continent"])) { 
+        if (empty($_POST["Continents"])) { 
           $continentErr = "Continent is Required"; 
-          $showForm = true;} 
-        //else {  }
+          $showForm = true;
+        } 
       
-        //$showForm = false;
-		//$name  = sanitize($_POST["Name"]);
-		//$email = sanitize($_POST["Email"]);
-      
-
         // Iterate through majors and store display name
         $displayMajor = $majors[$major];
 		$comments = sanitize($_POST["Comments"]);
@@ -107,14 +95,16 @@
   
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  	</head>
 	<body>
   		<div class="container body-content">
           <?php // DISPLAYING FORM ?>
           <?php if ($showForm): ?>
           <div class="row">
               <div class="col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-6 col-lg-offset-0">
-                  <div class="panel panel-info" style="@borderColor border-width: 2px;">
+                  <div class="panel panel-info" style="border-width: 2px;">
                       <div class="panel-heading">
                           <h3 class="panel-title" style="font-weight: bolder;">
                               Input Survey
@@ -122,17 +112,27 @@
                       </div>
                       <div class="panel-body">
                           <div class="col-md-12">
-                            <form action="" method="POST">
+                            <form action="week3.php" method="POST">
                             <?php // use isset() here to populate the fields with previous values ?>
                             <div class="form-group">
                                 <label class="control-label" for="Name">Name *</label>
-                                <input class="form-control" type="text" name="Name" id="Name" placeholder="Name" value="<?php echo $name; ?>" required>
+                                <input class="form-control" 
+                                        type="text" 
+                                        name="Name" 
+                                          id="Name" 
+                                 placeholder="Name"
+                                    required>
                                 <span class="error"><?php echo $nameErr; ?></span>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label" for="Email">Email *</label>
-                                <input class="form-control" type="email" name="Email" id="Email" placeholder="Email" value="<?php echo $email; ?>" required>
+                                <input class="form-control"
+                                        type="email" 
+                                        name="Email" 
+                                          id="Email" 
+                                 placeholder="Email"
+                                    required>
                                 <span class="error"><?php echo $emailErr; ?></span>
                             </div>
 
@@ -143,11 +143,10 @@
                                 <div class="radio">
                                     <input  type="radio"
                                             name="Major"
-                                            id="<?php echo $code; ?>"
-                                            value="<?php echo $code; ?>"
-                                            required
-                                			<?php if($code == $major) { echo ' checked'; } ?>
-                                    >
+                                              id="<?php echo $code; ?>"
+                                           value="<?php echo $code; ?>"
+                                         required
+                                			<?php if(isset($major) && $code == $major) { echo ' checked'; } ?>>
                                     <label class="control-label" for="<?php echo $code; ?>"><?php echo $name ?></label>
                                 </div>
                             <?php endforeach ?>
@@ -160,17 +159,16 @@
                                 <div class="checkbox">
                                     <input type="checkbox"
                                            name="Continents[]"
-                                           id="<?php echo $code; ?>"
-                                           value="<?php echo $code; ?>"
-                                           <?php if($code == 'na') { echo ' required'; } ?>
-                                    >
+                                             id="<?php echo $code; ?>"
+                                          value="<?php echo $code; ?>"
+                                           <?php if($code == 'na') { echo ' required'; } ?>>
                                     <label  for="<?php echo $code; ?>"><?php echo $name; ?></label>
                                 </div>
                             <?php endforeach ?>
 
                             <div class="form-group">
                                 <label class="control-label" for="Comments">Comments</label>
-                                <textarea class="form-control" name="Comments" value="<?php echo $comments; ?>" placeholder="Comments"></textarea>
+                                <textarea class="form-control" name="Comments" placeholder="Comments"></textarea>
                             </div>
                             <input class="btn btn-primary" type="submit" name="Submit" value="Submit">
                           </div>
@@ -188,7 +186,7 @@
           <?php else: ?>
           <div class="row">
               <div class="col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-6 col-lg-offset-0">
-                  <div class="panel panel-info" style="@borderColor border-width: 2px;">
+                  <div class="panel panel-info" style="border-width: 2px;">
                       <div class="panel-heading">
                           <h3 class="panel-title" style="font-weight: bolder;">
                               Results
