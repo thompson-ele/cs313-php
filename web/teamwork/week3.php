@@ -146,7 +146,8 @@
                                             id="<?php echo $code; ?>"
                                             value="<?php echo $code; ?>"
                                             required
-                                			<?php if($code == $major) { echo ' checked'; } ?>>
+                                			<?php if($code == $major) { echo ' checked'; } ?>
+                                    >
                                     <label class="control-label" for="<?php echo $code; ?>"><?php echo $name ?></label>
                                 </div>
                             <?php endforeach ?>
@@ -161,7 +162,8 @@
                                            name="Continents[]"
                                            id="<?php echo $code; ?>"
                                            value="<?php echo $code; ?>"
-                                           <?php if($code == 'na') { echo ' required'; } ?>>
+                                           <?php if($code == 'na') { echo ' required'; } ?>
+                                    >
                                     <label  for="<?php echo $code; ?>"><?php echo $name; ?></label>
                                 </div>
                             <?php endforeach ?>
