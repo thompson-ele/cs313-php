@@ -40,5 +40,47 @@
         "seymour": "2",
         "milo": "3",
         "haru": "1"
+    },
+    {
+        "rufus": "2",
+        "seymour": "3",
+        "milo": "4",
+        "haru": "4"
+    },
+    {
+        "rufus": "2",
+        "seymour": "3",
+        "milo": "4",
+        "haru": "4"
+    },
+    {
+        "rufus": "2",
+        "seymour": "3",
+        "milo": "4",
+        "haru": "4"
+    },
+    {
+        "rufus": "2",
+        "seymour": "3",
+        "milo": "4",
+        "haru": "4"
+    },
+    {
+        "rufus": "2",
+        "seymour": "3",
+        "milo": "4",
+        "haru": "4"
+    },
+    {
+        "rufus": "2",
+        "seymour": "3",
+        "milo": "4",
+        "haru": "3"
+    },
+    {
+        "rufus": "1",
+        "seymour": "3",
+        "milo": "4",
+        "haru": "3"
     }
 ]
