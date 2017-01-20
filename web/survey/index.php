@@ -1,6 +1,9 @@
 <?php
+session_start();
 // Check if the user already has submitted the survey ($_SESSION)
-
+if(isset($_SESSION['survey_completed']) && $_SESSION['survey_completed'] == TRUE) {
+	header('Location: results.php');
+}
 
 include('functions.php');
 $data = getFile();
@@ -12,15 +15,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$updated_data = json_encode($data, JSON_PRETTY_PRINT);
 	// Update the data.txt file
 	if(file_put_contents('data.txt', $updated_data)) {
-		$msg = true;
-		
-		// Create $_SESSION
-		// Add $_SESSION variables, msg
+		// Assign $_SESSION variables, survey_completed
+		$_SESSION['survey_completed'] = TRUE;
 		
 		// Redirect to results.php
-		
+		header('Location: results.php');
 	} else {
-		$msg = false;
+		echo '<p class="bg-danger">There was a problem submitting your survey. Please try again.</p>';
 	}
 }
 ?>
@@ -58,20 +59,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 						outputForm('milo', 'warning');
 						outputForm('haru', 'danger');
 					?>
-					<button type="submit" class="btn btn-lg btn-primary">
-						<i class="fa fa-paper-plane"></i>  Submit Survey
-					</button>
+					<div class="row">
+						<div class="col-xs-2 col-xs-offset-5 text-center">
+							<button type="submit" class="btn btn-lg btn-primary">
+								<i class="fa fa-paper-plane"></i>  Submit Survey
+							</button>
+							<p><a href="results.php">See survey results</a></p>
+						</div>
+					</div>
 				</form>
 
-				<p><a href="results.php">See survey results</a></p>
 			</div><!--/.row-->
 		</div><!--/.container-->
 	</main>
 	
 	<footer>
 		<div class="container text-center">
-			<h4>ploos [plüs] - <i>adj.</i><br>
-			a state of being larger than average. Includes behavioral traits such as fluffy belly, waddling, extreme laziness, etc.</h4>
+			<hp>ploos [plüs] - <i>adj.</i><br>
+			a state of being larger than average. Includes behavioral traits such as fluffy belly, waddling, extreme laziness, etc.</p>
 		</div>
 	</footer>
 	

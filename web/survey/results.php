@@ -1,9 +1,19 @@
 <?php
+session_start();
+// Check if survey has already been completed
+if(isset($_SESSION['survey_completed']) && $_SESSION['survey_completed'] == TRUE) {
+	$survey_completed = TRUE;
+}
 
 include('functions.php');
 $data = getFile();
 
-$cats = array('rufus', 'seymour', 'milo', 'haru');
+$cats = array(
+			'rufus' 	=> 'primary',
+			'seymour' 	=> 'success',
+			'milo' 		=> 'warning',
+			'haru' 		=> 'danger'
+		);
 $categories = array("A little ploos", "Somewhat ploos", "Ploos", "Extremely ploos");
 ?>
 <!doctype html>
@@ -17,6 +27,7 @@ $categories = array("A little ploos", "Somewhat ploos", "Ploos", "Extremely ploo
 	
 	<!-- CUSTOM STYLESHEETS-->
 	<link href="css/responsive-bar-chart.css" type="text/css" rel="stylesheet"> <!-- http://bootsnipp.com/snippets/GXkjV -->
+	<link href="css/styles.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,9 +41,11 @@ $categories = array("A little ploos", "Somewhat ploos", "Ploos", "Extremely ploo
 			<h1>Results</h1>
 			<hr>
 			
+			<?php if(isset($survey_completed) && $survey_completed == TRUE) { echo '<p id="msg" class="bg-success">Thank you for completing our survey! The kitties appreciate your input :)</p>'; } ?>
+			
 			<div class="row">
 			
-				<?php foreach($cats as $cat): ?>
+				<?php foreach($cats as $cat => $color): ?>
 				<div class="col-sm-6">
 					<h1><?php echo ucfirst($cat); ?></h1>
 					<div class="bar-chart">
@@ -43,7 +56,7 @@ $categories = array("A little ploos", "Somewhat ploos", "Ploos", "Extremely ploo
 								<div class="bar">
 									<span class="percent"><?php echo getCount($data, $cat, $number + 1); ?> votes</span>
 									<span class="title"><?php echo $category; ?></span>
-									<div class="item-progress" data-percent="<?php echo getCount($data, $cat, $number + 1) / count($data) * 100; ?>"></div>
+									<div class="item-progress <?php echo $color;?>-bg" data-percent="<?php echo getCount($data, $cat, $number + 1) / count($data) * 100; ?>"></div>
 								</div><!-- /.bar -->
 							</div><!-- /.item -->
 						<?php endforeach; ?>

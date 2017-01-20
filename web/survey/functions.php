@@ -54,6 +54,7 @@ function outputForm($name, $color) {
 	echo '</div><br>';
 	// END IMAGES
 	
+	echo '<strong>Select One: </strong>';
 	echo '<div class="btn-group" data-toggle="buttons">';
 	
 	echo '	<label class="btn btn-'.$color.'" for="'.$name.'1">

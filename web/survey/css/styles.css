@@ -11,9 +11,17 @@
     padding: 0 30px 20px;
 }
 
+.primary-bg {
+	background-color: #2e6da4;
+}
+
 .success {
 	border: 3px solid #4cae4c;
     padding: 0 30px 20px;
+}
+
+.success-bg {
+	background-color: #4cae4c;
 }
 
 .warning {
@@ -21,9 +29,21 @@
     padding: 0 30px 20px;
 }
 
+.warning-bg {
+	background-color: #eea236;
+}
+
 .danger {
 	border: 3px solid #d43f3a;
     padding: 0 30px 20px;
+}
+
+.danger-bg {
+	background-color: #d43f3a;
+}
+
+#msg {
+	padding: 15px;
 }
 
 section {
@@ -34,4 +54,5 @@ footer {
 	background-color: #000;
 	color: #FFF;
 	padding: 30px 0;
+	font-style: italic;
 }
