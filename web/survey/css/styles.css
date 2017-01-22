@@ -15,6 +15,11 @@ p {
 	color: #000;
 }
 
+.cat-circle-img {
+	width: 95px;
+    margin-right: 25px;
+}
+
 .primary {
 	border: 3px solid #2e6da4;
     padding: 0 30px 20px;
@@ -53,6 +58,10 @@ p {
 
 #msg {
 	padding: 15px;
+}
+
+main {
+	margin-bottom: 40px;
 }
 
 section {

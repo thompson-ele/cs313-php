@@ -50,12 +50,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         	<div class="row">
             	<div class="col-md-8 col-md-offset-2">
                     <h1>Ploos Survey</h1>
-                    <p>My brother's friend recently coined a new term when referring to the fluffiness that is his cat Milo:</p>
+                    <p>My brother's friend recently coined a new term when referring to the fluffiness of a cat:</p>
                     <blockquote>
                         <h3>ploos [plüs] - <i>adj.</i><br>
                         a state of being larger than average. Includes behavioral traits such as fluffy belly, waddling, extreme laziness, etc.</h3>
                     </blockquote>
-                    <p>Now that we have an accurate descriptor for our cats, it is time to actually rank them by their ploos-ness.</p>
                 </div>
             </div>
 			<div class="row">
