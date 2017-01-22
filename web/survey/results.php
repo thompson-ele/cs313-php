@@ -24,6 +24,9 @@ $categories = array("A little ploos", "Somewhat ploos", "Ploos", "Extremely ploo
 	
 	<!-- BOOTSTRAP CSS -->
 	<link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 	
 	<!-- CUSTOM STYLESHEETS-->
 	<link href="css/responsive-bar-chart.css" type="text/css" rel="stylesheet"> <!-- http://bootsnipp.com/snippets/GXkjV -->
@@ -33,8 +36,12 @@ $categories = array("A little ploos", "Somewhat ploos", "Ploos", "Extremely ploo
 <body>
 	<div class="container">
 		<div class="row">
-			<h2>ploos [plüs] - <i>adj.</i><br>
-			a state of being larger than average. Includes behavioral traits such as fluffy belly, waddling, extreme laziness, etc.</h2>
+        	<div class="col-md-8 col-md-offset-2">
+            	<blockquote>
+                    <h3>ploos [plüs] - <i>adj.</i><br>
+                    a state of being larger than average. Includes behavioral traits such as fluffy belly, waddling, extreme laziness, etc.</h3>
+                </blockquote>
+            </div>
 		</div>
 		
 		<div class="row">
@@ -68,7 +75,7 @@ $categories = array("A little ploos", "Somewhat ploos", "Ploos", "Extremely ploo
 				
 			</div>
 			<!-- /.row -->
-
+			<p><a href="index.php">Back to Survey</a></p>
 		</div><!--/row-->
 	</div><!--/.container-->
 	

@@ -36,6 +36,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	<!-- FONT AWESOME -->
 	<script src="https://use.fontawesome.com/fae7a79c55.js"></script>
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 	
 	<!-- CUSTOM STYLESHEET -->
 	<link href="css/styles.css" type="text/css" rel="stylesheet">
@@ -44,12 +47,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 	<main>
 		<div class="container">
+        	<div class="row">
+            	<div class="col-md-8 col-md-offset-2">
+                    <h1>Ploos Survey</h1>
+                    <p>My brother's friend recently coined a new term when referring to the fluffiness that is his cat Milo:</p>
+                    <blockquote>
+                        <h3>ploos [plüs] - <i>adj.</i><br>
+                        a state of being larger than average. Includes behavioral traits such as fluffy belly, waddling, extreme laziness, etc.</h3>
+                    </blockquote>
+                    <p>Now that we have an accurate descriptor for our cats, it is time to actually rank them by their ploos-ness.</p>
+                </div>
+            </div>
 			<div class="row">
-				<blockquote>
-					<h2>ploos [plüs] - <i>adj.</i><br>
-					a state of being larger than average. Includes behavioral traits such as fluffy belly, waddling, extreme laziness, etc.</h2>
-				</blockquote>
-
 				<h3>Please rank the following cats based on their level of ploos-ness:</h3>
 
 				<form action="index.php" method="post">
