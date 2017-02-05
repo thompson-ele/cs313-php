@@ -37,6 +37,26 @@ function addApplication($student_id, $printed_name, $program_id, $comments)
         }
 
     }
+    
+# Return true if successful    
+function approveApplication($application_id)
+    {   include("database.php");
+    
+        try {
+            $sql = "UPDATE application
+                    SET approved = 'Y', approve_date = ?
+                    WHERE application_id = ?";
+            
+            $results = $db->prepare($sql);
+            $results->bindValue(1, date("Y-m-d H:i:s"), PDO::PARAM_STR);
+            $results->bindValue(2, $application_id, PDO::PARAM_INT);
+            $results->execute();
+        } catch(Exception $e) {
+            echo "Error!: " . $e->getMessage() . "<br>"   ;
+            return false;
+        }
+        return true;
+    }
 
 # Return all applications, or applications based on student_id number
 function getApplications($student_id = null, $filter = null)
@@ -61,6 +81,8 @@ function getApplications($student_id = null, $filter = null)
                     case 'approved':    $sql .= " WHERE approved = 'Y' ORDER BY submit_date";
                         break;
                     case 'unapproved':  $sql .= " WHERE approved = 'N' ORDER BY approve_date ASC";
+                        break;
+                    case 'pickup':      $sql .= " ORDER BY approved DESC, student_id, pickup_date";
                         break;
                     default:            $sql .= "";
                 }
@@ -167,7 +189,22 @@ function getNotPickedUpCertificates()
     }
     
 function pickupCertificate($application_id)
-    {
+    {   include("database.php");
     
+        try {
+            $sql = "UPDATE application
+                    SET pickup_date = ?
+                    WHERE application_id = ?";
+            
+            $results = $db->prepare($sql);       
+            $results->bindValue(1, date("Y-m-d H:i:s"), PDO::PARAM_STR);
+            $results->bindValue(2, $application_id, PDO::PARAM_INT);
+            $results->execute();
+        } catch(Exception $e) {
+            echo "Error!: " . $e->getMessage() . "<br>"   ;
+            return false;
+        }
+        
+        return true;
     }
 ?>

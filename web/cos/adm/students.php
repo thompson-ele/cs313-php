@@ -10,7 +10,7 @@ include('model/application.php');
 include('model/certificate.php');
 
 include('view/header.php');
-
+include('view/navbar.php');
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     // Display a single student - view/student.php

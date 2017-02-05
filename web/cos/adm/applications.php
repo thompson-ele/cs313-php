@@ -10,6 +10,7 @@ include('model/application.php');
 include('model/student.php');
 
 include('view/header.php');
+include('view/navbar.php');
 
 // $_GET id is an application_id
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -48,8 +49,23 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
             $error = 'There was a problem adding the student to the database. Please try again.';
         }
     }
-    
     include('view/application_new.php');
+    
+// Approve applications
+} else if(isset($_GET['id']) && $_GET['id'] == 'approve') {
+    
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        foreach($_POST['approved'] as $cert) {
+            approveApplication($cert);
+            // TODO: Include validation for approval success/fail
+            // TODO: Send email to each student that was approved
+        }
+    }
+    include('view/application_approve.php');
+
+// Certificate lookup for when students pickup certificates
+} else if(isset($_GET['id']) && $_GET['id'] == 'pickup') {
+    include('view/application_pickup.php');
 
 // List all applications
 } else {
