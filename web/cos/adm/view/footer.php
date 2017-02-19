@@ -21,6 +21,7 @@
         });
         </script>
         <?php endif; ?>
+
     </footer>
     </body>
 </html>

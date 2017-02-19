@@ -23,7 +23,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
         $email          = $_POST['email'];
         
         if(updateStudent($student_id, $first_name, $last_name, $email)) {
-            $success = 'Successfully updated this student';
+            $success = 'Updated this student';
         } else {
             $error = 'There was a problem updating this student';
         }
@@ -38,6 +38,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 } else {
     // Display all students - view/student_list.php
     $students = getStudents();
+    $datatables = true;
     
     include('view/student_list.php');
 }

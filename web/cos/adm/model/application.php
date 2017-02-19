@@ -52,7 +52,7 @@ function approveApplication($application_id)
             $results->bindValue(2, $application_id, PDO::PARAM_INT);
             $results->execute();
         } catch(Exception $e) {
-            echo "Error!: " . $e->getMessage() . "<br>"   ;
+            echo "Error!: " . $e->getMessage() . "<br>";
             return false;
         }
         return true;
@@ -82,7 +82,7 @@ function getApplications($student_id = null, $filter = null)
                         break;
                     case 'unapproved':  $sql .= " WHERE approved = 'N' ORDER BY approve_date ASC";
                         break;
-                    case 'pickup':      $sql .= " ORDER BY approved DESC, student_id, pickup_date";
+                    case 'pickup':      $sql .= " WHERE approved = 'Y' ORDER BY pickup_date DESC";
                         break;
                     default:            $sql .= "";
                 }
@@ -148,29 +148,6 @@ function submitApplication($student_id, $first_name, $last_name, $email, $printe
         return true;
     }
     
-function getApprovedApplications()
-    {   include ("database.php");
-            
-        try {
-            return $db->query("SELECT application FROM application WHERE approved = 'Y'");
-        } catch(Exception $e) {
-            echo "Error!: " . $e->getMessage() . "<br>"   ;
-            return false;
-        }
-    }
-    
-function getUnapprovedApplications()
-    {   include ("database.php");
-            
-        try {
-            return $db->query("SELECT * FROM application WHERE approved = 'N'");
-        } catch(Exception $e) {
-            echo "Error!: " . $e->getMessage() . "<br>"   ;
-            return false;
-        }
-    
-    }
-    
 function getNotPickedUpCertificates()
     {   include("database.php");
     
@@ -206,5 +183,57 @@ function pickupCertificate($application_id)
         }
         
         return true;
+    }
+
+# Certain values should not be updateable
+# Only update values should be printed_name, approve_date, and pickup_date
+function updateApplication($application_id, $printed_name, $approve_date, $pickup_date)
+    {   include("database.php");
+        
+        try {
+            $sql = "UPDATE application
+                    SET printed_name = ?,
+                        approve_date = ?,
+                        pickup_date = ?";
+                        
+            // If approve_date is being updated, also update approved column to Y
+            if($approve_date !== NULL) {
+            $sql .= ", approved = 'Y' ";
+            } else {
+            $sql .= ", approved = 'N' ";
+            }
+                  
+            $sql .= "WHERE application_id = ?";
+            
+            // Set $approve_date and $pickup_date to NULL values instead of empty
+            $approve_date = ($approve_date == '' ? NULL : $approve_date);
+            $pickup_date = ($pickup_date == '' ? NULL : $pickup_date);
+            
+            $results = $db->prepare($sql);
+            $results->bindValue(1, $printed_name, PDO::PARAM_STR);
+            $results->bindValue(2, $approve_date); // TODO: Format date? Here or before
+            $results->bindValue(3, $pickup_date);  // TODO: Format date? Here or before
+            $results->bindValue(4, $application_id, PDO:: PARAM_INT);
+            $results->execute();
+            
+        } catch(Exception $e) {
+            echo "Error!: " . $e->getMessage() . "<br>"   ;
+            return false;
+        }
+        
+        return true;
+    }
+
+# Deletes application from the database
+# TODO: On live server change to update of active_flag
+function deleteApplication()
+    {   include("database.php");
+        
+        try {
+            
+        } catch(Exception $e) {
+            echo "Error!: " . $e->getMessage() . "<br>"   ;
+            return false;
+        }
     }
 ?>

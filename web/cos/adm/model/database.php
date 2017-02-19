@@ -3,11 +3,6 @@
 // default Heroku Postgres configuration URL
 $dbUrl = getenv('DATABASE_URL');
 
-if (empty($dbUrl)) {
- // If accessing the database not on Heroku, use this config
- $dbUrl = "postgres://qebkqyxiqvsflj:c86156bcaa1172bc179daf4520f42a0549552cbe0de6ab44c9804f53e95af2a9@ec2-54-163-253-94.compute-1.amazonaws.com:5432/d2nre3mi3v2jrs";
-}
-
 $dbopts = parse_url($dbUrl);
 
 

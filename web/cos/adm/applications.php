@@ -14,7 +14,41 @@ include('view/navbar.php');
 
 // $_GET id is an application_id
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
-    echo 'Individual application page';
+    
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        
+        $application_id     = $_GET['id'];
+        $printed_name       = $_POST['printed_name'];
+        
+        // Format $approve_date and $pickup_date
+        if(!empty($_POST['approve_date'])) {
+            // Convert form input into time, then to db format
+            $approve_date = strtotime($_POST['approve_date']);
+            $approve_date = date('Y-m-d H:i:s', $approve_date);
+        } else {
+            $approve_date = NULL;
+        }
+        
+        if(!empty($_POST['pickup_date'])) {
+            $pickup_date = strtotime($_POST['pickup_date']);
+            $pickup_date = date('Y-m-d H:i:s', $pickup_date);
+        } else {
+            $pickup_date = NULL;
+        }
+        
+        // Update the application
+        if(updateApplication($application_id, $printed_name, $approve_date, $pickup_date)) {
+            $success = 'Updated the application';
+        } else {
+            $error = 'There was a problem updating the application';
+        }
+    }
+    
+    $application    = getApplication($_GET['id']);
+    $student        = getStudent($application['student_id']);
+    $certificate    = getCertificate($application['program_id']);
+    
+    include('view/application_edit.php');
     
 // Add a new application    
 } else if(isset($_GET['id']) && $_GET['id'] == 'new') {
@@ -54,21 +88,58 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 // Approve applications
 } else if(isset($_GET['id']) && $_GET['id'] == 'approve') {
     
+    $datatables = true;
+    $error = '';
+    
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         foreach($_POST['approved'] as $cert) {
-            approveApplication($cert);
-            // TODO: Include validation for approval success/fail
+            if(!approveApplication($cert)) {
+                $error .= $cert . ', ';
+            }
             // TODO: Send email to each student that was approved
+        }
+        
+        if(empty($error)) {
+            $success = 'Updated all newly approved applications';
         }
     }
     include('view/application_approve.php');
 
 // Certificate lookup for when students pickup certificates
 } else if(isset($_GET['id']) && $_GET['id'] == 'pickup') {
+    
+    $datatables = true;
+    $error = '';
+    
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        foreach($_POST['applications'] as $app) {
+            if(!pickupCertificate($app)) {
+                $error .= $app . ', ';
+            }
+        }
+        
+        if(empty($error)) {
+            $success = 'Picked up the application(s)';
+        }
+    }
+    
     include('view/application_pickup.php');
+
+// Delete an application
+} else if(isset($_GET['id']) && $_GET['id'] == 'delete') {
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $application_id = $_POST['delete'];
+        
+        if(deleteApplication($application_id)) {
+            // TODO:
+        }   
+    }
 
 // List all applications
 } else {
+    $datatables = true;
+    $applications = getApplications();
+    
     include('view/application_list.php');
 }
 

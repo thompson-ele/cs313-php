@@ -1,2 +1,35 @@
 @charset "utf-8";
 /* CSS Document */
+body {
+    background-color: #FFF;
+}
+
+.larger-text {
+    font-size: 1.25em;
+}
+
+.bold-text {
+    font-weight: 700;
+}
+
+.button-margin {
+    margin-top: 15px;
+}
+
+.right-submit-button {
+    /*margin-top: -55px;*/
+    /* Need to figure out z-index so it appears
+       over the pagination of data tables */
+}
+
+.icon-danger {
+    color: #d9534f;
+}
+
+.icon-success {
+    color: #5cb85c;
+}
+
+.icon-warning {
+    color: #f0ad4e;
+}
